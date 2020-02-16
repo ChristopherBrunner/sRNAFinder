@@ -75,13 +75,13 @@ The **default** pipeline run has a default window size of 1000 nts and a step of
 Here is the **default** pipeline run with the bacterium S. Enterica as an example:
 
 ```
-nextflow run sRNAFinder.nf --org=”S_enterica” --dir=”/ADD_PATH/sRNAFinder/”
+nextflow run sRNAFinder.nf --org=S_enterica --dir=/ADD_PATH/sRNAFinder/
 ```
 For **different values** of window size and step, use the following:
 For example, use a step of 1 if no overlap between each sliding window of size 2000 is prefered.
 
 ```
-nextflow run sRNAFinder.nf --org=”S_enterica” --dir=”/ADD_PATH/sRNAFinder/” --windowSize=”2000” --step=”1”
+nextflow run sRNAFinder.nf --org=S_enterica --dir=/ADD_PATH/sRNAFinder/ --windowSize=2000 --step=1
 ```
 The pipeline is also capable of displaying **reference sRNAs** from the wet lab as a red bar on the x-axis of each plot.
 To use this feature, include the following table headers as the first line of your reference BED file. Make sure that each column is named correctly and is tab-delimited. Keep in mind that each BED file can have varying numbers of columns, but start, end and strand have to be named exactly like in the example in order for this feature to work.
@@ -93,7 +93,7 @@ start    end    strand
 Use this command to include the reference sRNAs in your plot, ”SLT2_sRNAs.bed” being the reference file name for S. Enterica
 
 ```
-nextflow run sRNAFinder.nf --org=”S_enterica” --dir=”/ADD_PATH/sRNAFinder/” --refFile=”SLT2_sRNAs.bed”
+nextflow run sRNAFinder.nf --org=S_enterica --dir=/ADD_PATH/sRNAFinder/ --refFile=SLT2_sRNAs.bed
 ```
 
 After each run, the pipeline outputs a file named “ORGANISM_NAME_GenomeWindows.bed” with the genomic regions and gene ID of each putative sRNA that reached a threshold score for being a bona fide sRNA. These windows are extended in each direction by half their size (doubles each window size in total) and merged in case of an overlap between them.
@@ -101,7 +101,7 @@ After each run, the pipeline outputs a file named “ORGANISM_NAME_GenomeWindows
 This file can be used to **re run the pipeline** with a smaller window size, to detect smaller sRNAs that might be inside a larger sRNA window.
 
 ```
-nextflow run sRNAFinder.nf --org=”S_enterica” --dir=”/ADD_PATH/sRNAFinder/” --windowSize=”250” --step=”1” --genomeLength=”S_enterica_GenomeWindows.bed”
+nextflow run sRNAFinder.nf --org=S_enterica --dir=/ADD_PATH/sRNAFinder/ --windowSize=250 --step=1 --genomeLength=S_enterica_GenomeWindows.bed
 ```
 The same input file can be used for **analyzing only one or multiple specific genomic regions**. Use the standard BED file format for this feature:
 
@@ -115,7 +115,7 @@ Finally, all options above can be used **together** or **seperately**, except fo
 
 A **sample pipeline run** using all features would look something like the following:
 ```
-nextflow run sRNAFinder.nf --org=”S_enterica” --dir=”/ADD_PATH/sRNAFinder/” --windowSize=”500” --step=”1” --genomeLength=”S_enterica_GenomeWindows.bed” --refFile=”SLT2_sRNAs.bed”
+nextflow run sRNAFinder.nf --org=S_enterica --dir=/ADD_PATH/sRNAFinder/ --windowSize=500 --step=1 --genomeLength=S_enterica_GenomeWindows.bed --refFile=SLT2_sRNAs.bed
 ```
 
 ## 3. Output
